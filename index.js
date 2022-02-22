@@ -18,8 +18,20 @@ app.listen(PORT, () => {
   console.log('Online');
 });
 
-app.get('/talker', async (req, res, next) => {
+app.get('/talker', async (_req, res, _next) => {
   const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
   const parsedSpeakers = JSON.parse(allSpeakers);
   return res.status(200).json(parsedSpeakers);
+});
+
+app.get('/talker/:id', async (req, res, _next) => {
+  const { id } = req.params;
+  const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
+  const parsedSpeakers = JSON.parse(allSpeakers);
+  const speaker = parsedSpeakers.find((person) => person.id === Number(id));
+  if (!speaker) {
+    return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+  }
+
+  return res.status(200).json(speaker);
 });
