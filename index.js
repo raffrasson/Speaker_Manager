@@ -76,7 +76,8 @@ authValidation, talkValidation, nameValidation, ageValidation, async (req, res) 
   });
 
   app.put('/talker/:id', 
-  authValidation, nameValidation, talkValidation, rateValidation, ageValidation, async (req, res) => {
+  authValidation, 
+  nameValidation, talkValidation, rateValidation, ageValidation, async (req, res) => {
     const { id } = req.params;
     const { name, age, talk } = req.body;
     const idToEdit = Number(id);
@@ -91,3 +92,17 @@ authValidation, talkValidation, nameValidation, ageValidation, async (req, res) 
     await fs.writeFile('./talker.json', updatedSpeakerArray);
     return res.status(200).json(editedSpeaker);
     });
+
+    app.delete('/talker/:id', authValidation, async (req, res, _next) => {
+      const { id } = req.params;
+      const idToDelete = Number(id);
+      const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
+      const parsedSpeakers = JSON.parse(allSpeakers);
+  
+      const index = parsedSpeakers.findIndex((speaker) => speaker.id === idToDelete);
+  
+      parsedSpeakers.splice(index, 1); // remover e não põe nada no lugar = deletar
+      const updatedSpeakerArray = JSON.stringify(parsedSpeakers);
+      await fs.writeFile('./talker.json', updatedSpeakerArray);
+      return res.status(204).end();
+});
