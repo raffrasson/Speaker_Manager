@@ -63,7 +63,7 @@ app.post('/login', async (req, res, _next) => {
   });
 
 app.post('/talker', 
-authValidation, talkValidation, nameValidation, ageValidation, async (req, res) => {
+authValidation, talkValidation, rateValidation, nameValidation, ageValidation, async (req, res) => {
   const { name, age, talk } = req.body;
   const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
   const parsedSpeakers = JSON.parse(allSpeakers);
