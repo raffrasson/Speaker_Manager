@@ -26,7 +26,9 @@
     "eslint": "6.8.0",
     "eslint-config-trybe-backend": "1.0.1",
     "frisby": "2.1.3",
+    "is-my-date-valid": "^0.1.1",
     "jest": "26.6.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "validate-date": "^2.0.0"
   }
 }

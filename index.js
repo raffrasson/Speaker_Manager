@@ -1,8 +1,12 @@
 const express = require('express');
 const fs = require('fs/promises');
 const bodyParser = require('body-parser');
-const randomToken = require('random-token');
-const validator = require('email-validator'); // módulo parar verificação de email com base na forma
+const randomToken = require('random-token'); // módulo para gerar token aleatorio
+const validator = require('email-validator'); // módulo para verificação de email com base na forma
+const nameValidation = require('./nameValidation');
+const ageValidation = require('./ageValidation');
+const talkValidation = require('./talkValidation');
+const authValidation = require('./authValidation');
 
 const app = express();
 app.use(bodyParser.json());
@@ -55,4 +59,17 @@ app.post('/login', async (req, res, _next) => {
     return res.status(400).json({ message: 'O "password" deve ter pelo menos 6 caracteres' });
   }
   return res.status(200).json({ token });
+  });
+
+app.post('/talker', 
+authValidation, talkValidation, nameValidation, ageValidation, async (req, res, _next) => {
+  const { name, age, talk } = req.body;
+  const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
+  const parsedSpeakers = JSON.parse(allSpeakers);
+  const newId = (parsedSpeakers.length + 1);
+  const newSpeaker = { name, age, id: newId, talk };
+  parsedSpeakers.push(newSpeaker);
+  const updatedSpeakerArray = JSON.stringify(parsedSpeakers);
+  await fs.writeFile('./talker.json', updatedSpeakerArray);
+  return res.status(201).json(newSpeaker);
   });
