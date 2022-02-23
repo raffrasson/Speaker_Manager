@@ -7,6 +7,7 @@ const nameValidation = require('./nameValidation');
 const ageValidation = require('./ageValidation');
 const talkValidation = require('./talkValidation');
 const authValidation = require('./authValidation');
+const rateValidation = require('./rateValidation');
 
 const app = express();
 app.use(bodyParser.json());
@@ -62,7 +63,7 @@ app.post('/login', async (req, res, _next) => {
   });
 
 app.post('/talker', 
-authValidation, talkValidation, nameValidation, ageValidation, async (req, res, _next) => {
+authValidation, talkValidation, nameValidation, ageValidation, async (req, res) => {
   const { name, age, talk } = req.body;
   const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
   const parsedSpeakers = JSON.parse(allSpeakers);
@@ -73,3 +74,20 @@ authValidation, talkValidation, nameValidation, ageValidation, async (req, res, 
   await fs.writeFile('./talker.json', updatedSpeakerArray);
   return res.status(201).json(newSpeaker);
   });
+
+  app.put('/talker/:id', 
+  authValidation, nameValidation, talkValidation, rateValidation, ageValidation, async (req, res) => {
+    const { id } = req.params;
+    const { name, age, talk } = req.body;
+    const idToEdit = Number(id);
+    const allSpeakers = await fs.readFile(SPEAKERS, 'utf-8');
+    const parsedSpeakers = JSON.parse(allSpeakers);
+
+    const index = parsedSpeakers.findIndex((speaker) => speaker.id === idToEdit);
+
+    const editedSpeaker = { name, age, id: idToEdit, talk };
+    parsedSpeakers.splice(index, 1, editedSpeaker);
+    const updatedSpeakerArray = JSON.stringify(parsedSpeakers);
+    await fs.writeFile('./talker.json', updatedSpeakerArray);
+    return res.status(200).json(editedSpeaker);
+    });
