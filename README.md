@@ -1,13 +1,38 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Star Wars Planet Search
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+# Contexto
+Essa aplicação consiste em uma API de CRUD (create, update, read, delete) de palestrantes de um evento. 
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+### Habilidades trabalhadas
+Realizar operações assíncronas utilizando callbacks e promises;
+* Ler e escrever arquivos localmente com NodeJS;
+* Escrever APIs utilizando Node e Express;
+* Entender a estrutura de uma aplicação Express e como organizar seu código;
+* Criar rotas e aplicar middlewares.
+
+
+## Técnologias usadas
+
+Back-end:
+> Desenvolvido usando: JavaScript, Node.js, Express.
+
+
+## Instalando Dependências
+
+> Back-end
+
+* Abra o terminal no diretório do projeto e execute:
+
+```bash
+npm install
+``` 
+## Executando a aplicação
+
+* Após instalar as dependências, execute no terminal:
+
+```bash
+npm start
+``` 
+
+* A seguir, acesse os endpoints usando o curl ([como usar](https://www.campuscode.com.br/conteudos/comandos-curl-para-testar-requisicoes-api)) ou ferramentas de API como o [Insomnia.](https://insomnia.rest/)
+* 
