@@ -1,6 +1,6 @@
 # Speaker Manager
 
-# Contexto
+## Contexto
 Essa aplicação consiste em uma API de CRUD (create, update, read, delete) de palestrantes de um evento. 
 
 ### Habilidades trabalhadas
@@ -34,4 +34,4 @@ npm install
 npm start
 ``` 
 
-* A seguir, acesse os endpoints usando o curl ([como usar](https://www.campuscode.com.br/conteudos/comandos-curl-para-testar-requisicoes-api)) ou ferramentas de API como o [Insomnia.](https://insomnia.rest/)
+* A seguir, acesse os endpoints usando o curl em um novo terminal ([como usar](https://www.campuscode.com.br/conteudos/comandos-curl-para-testar-requisicoes-api)) ou ferramentas de API como o [Insomnia.](https://insomnia.rest/)
