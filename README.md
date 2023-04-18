@@ -1,4 +1,4 @@
-# Star Wars Planet Search
+# Speaker Manager
 
 # Contexto
 Essa aplicação consiste em uma API de CRUD (create, update, read, delete) de palestrantes de um evento. 
@@ -35,4 +35,3 @@ npm start
 ``` 
 
 * A seguir, acesse os endpoints usando o curl ([como usar](https://www.campuscode.com.br/conteudos/comandos-curl-para-testar-requisicoes-api)) ou ferramentas de API como o [Insomnia.](https://insomnia.rest/)
-* 
